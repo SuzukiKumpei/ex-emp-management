@@ -43,7 +43,7 @@ public class AdministratorRepository {
 	/**
 	 * 管理者情報を挿入する.
 	 * 
-	 * @param administrator INSERT文
+	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
 
@@ -57,16 +57,16 @@ public class AdministratorRepository {
 	 * メールアドレスとパスワードから管理者情報を取得.
 	 * @param mailAddress メールアドレス
 	 * @param password　パスワード
-	 * @return　検索後のデータ
+	 * @return　管理者情報
 	 * 
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 
-		if (mailAddress == null || password == null) {
-			return null;
-		}
+//		if (mailAddress == null || password == null) {
+//			return null;
+//		}
 
-		String selectSql = "SELECT id,name,mailAddress,password FROM administrators WHERE mailAddress = :mailAddress OR password = :password";
+		String selectSql = "SELECT id,name,mail_address,password FROM administrators WHERE mail_address = :mailAddress OR password = :password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password",
 				password);
 

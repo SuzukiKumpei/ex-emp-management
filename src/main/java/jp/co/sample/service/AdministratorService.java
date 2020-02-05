@@ -7,6 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.repository.AdministratorRepository;
 
+/**
+ * 管理者情報を扱う.
+ * @author suzukikunpei
+ *
+ */
 @Service
 @Transactional
 public class AdministratorService {

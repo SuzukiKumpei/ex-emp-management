@@ -51,7 +51,7 @@ public class EmployeeRepository {
 	 */
 	public List<Employee> findAll() {
 		String sql = "SELECT id,name,image,gender,hireDate,mailAddress,zipCode"
-				+ ",address,telephone,employee,characteristics,dependentsCount" + "FROM employees ORDER BY hireDate";
+				+ ",address,telephone,employee,characteristics,dependentsCount" + " FROM employees ORDER BY hireDate";
 
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 		return employeeList;
@@ -65,7 +65,7 @@ public class EmployeeRepository {
 	 */
 	public Employee load(Integer id) {
 		String sql = "SELECT id,name,image,gender,hireDate,mailAddress,zipCode"
-				+ ",address,telephone,employee,characteristics,dependentsCount" + "FROM employees WHERE id=:id";
+				+ ",address,telephone,employee,characteristics,dependentsCount" + " FROM employees WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
 		Employee employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
@@ -80,7 +80,7 @@ public class EmployeeRepository {
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 
-		String sql = "UPDATE employees SET dependentsCount = :dependentsCount";
+		String sql = "UPDATE employees SET dependentsCount = :dependentsCount WHERE id = ;id";
 		template.update(sql, param);
 	}
 
