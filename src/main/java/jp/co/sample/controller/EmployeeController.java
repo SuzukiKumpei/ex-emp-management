@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.sample.domain.Employee;
 import jp.co.sample.form.UpdateEmployeeForm;
 import jp.co.sample.service.EmployeeService;
 
@@ -55,6 +56,24 @@ public class EmployeeController {
 		
 		return "employee/detail";
 		
+	}
+	
+	/**
+	 * 扶養人数を更新する.
+	 * @param form
+	 * @return 扶養人数
+	 */
+	@RequestMapping("/update")
+	public String update(UpdateEmployeeForm form) {
+		Employee employee = new Employee();
+		//BeanUtils.copyProperties(form, employee);
+		employee.setId(Integer.parseInt(form.getId()));
+		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+		
+		employeeService.update(employee);
+		//System.out.println(form.toString());
+		//System.out.println(employee);
+		return "redirect:/employee/showList";
 	}
 	
 }

@@ -73,7 +73,7 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * ログイン画面を表示する
+	 * ログイン画面を表示する.
 	 * @return ログインパラメータ
 	 */
 	@ModelAttribute
@@ -87,23 +87,39 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * ログインをする処理
+	 * ログインをする処理.
 	 * @param form
 	 * @return 従業員一覧
 	 */
 	@RequestMapping("/login")
 	public String login(LoginForm form, Model model) {
+		//System.out.println(form);
 		Administrator  administratorName = administratorService.login(form.getMailAddress(), form.getPassword());
+		//System.out.println(administratorName);
 		if(administratorName == null) {
+			//System.out.println("ログイン失敗");
 			model.addAttribute("errorMessage","メールアドレスまたはパスワードが不正です。");
 			return "redirect:/";
 		}else {
+			//System.out.println("ログイン成功");
 			session.setAttribute("administratorName", administratorName);
 			return "forward:/employee/showList";
 		}
 		
 		
 	}
+	
+	/**
+	 * ログイン画面.
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	
 	
 	
 	

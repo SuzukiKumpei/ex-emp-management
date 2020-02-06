@@ -43,7 +43,7 @@
 					<p class="navbar-text navbar-right">
 						<span th:text="${session.administratorName + 'さん'}">山田さん</span>こんにちは！
 						&nbsp;&nbsp;&nbsp; <a href="../administrator/login.html"
-							class="navbar-link">ログアウト</a>
+							class="navbar-link" th:href="@{/logout}">ログアウト</a>
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -70,7 +70,7 @@
 					<!-- ここにモックのform要素を貼り付けます -->
 
 
-					<form method="post" action="list.html">
+					<form method="post" action="list.html" th:action="@{/employee/update}" th:object="${updateEmployeeForm}">
 						<fieldset>
 							<legend>従業員情報</legend>
 							<table class="table table-striped">
@@ -119,7 +119,7 @@
 									<th nowrap>扶養人数</th>
 									<td><label class="error-messages"> 扶養人数を入力してください </label>
 										<label class="control-label" style="color: red"
-										for="dependentsCount"></label> <input type="hidden" name="id" th:name="${employee.id}">
+										for="dependentsCount"></label> <input type="hidden" name="id" th:value="${employee.id}">
 										<input type="text" name="dependentsCount" id="dependentsCount"
 										class="form-control" value="3" th:value="${employee.dependentsCount}"></td>
 								</tr>

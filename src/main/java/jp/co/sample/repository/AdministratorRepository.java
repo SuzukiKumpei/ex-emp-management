@@ -60,9 +60,7 @@ public class AdministratorRepository {
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 
-//		if (mailAddress == null || password == null) {
-//			return null;
-//		}
+
 
 		String selectSql = "SELECT id,name,mail_address,password FROM administrators WHERE mail_address = :mailAddress AND password = :password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password",
