@@ -15,6 +15,7 @@ import jp.co.sample.domain.Employee;
 /**
  * 
  * 従業員テーブルを操作するリポジトリ.
+ * 
  * @author suzukikunpei
  *
  */
@@ -47,11 +48,13 @@ public class EmployeeRepository {
 
 	/**
 	 * 従業員一覧情報を入社日順で取得.
+	 * 
 	 * @return 従業員リスト
 	 */
 	public List<Employee> findAll() {
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code"
-				+ ",address,telephone,salary,characteristics,dependents_count" + " FROM employees ORDER BY hire_date";
+				+ ",address,telephone,salary,characteristics,dependents_count"
+				+ " FROM employees ORDER BY hire_date DESC";
 
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 		return employeeList;
@@ -60,8 +63,9 @@ public class EmployeeRepository {
 
 	/**
 	 * 主キーから従業員情報を取得.
+	 * 
 	 * @param id
-	 * @return　従業員リスト
+	 * @return 従業員リスト
 	 */
 	public Employee load(Integer id) {
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code"
@@ -75,12 +79,13 @@ public class EmployeeRepository {
 
 	/**
 	 * 従業員情報を変更する.
+	 * 
 	 * @param employee 従業員
 	 */
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 
-		String sql = "UPDATE employees SET dependents_count = :dependentsCount WHERE id = ;id";
+		String sql = "UPDATE employees SET dependents_count = :dependentsCount WHERE id = :id";
 		template.update(sql, param);
 	}
 

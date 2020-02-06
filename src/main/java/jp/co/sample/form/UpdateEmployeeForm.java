@@ -3,6 +3,7 @@ package jp.co.sample.form;
 /**
  * 
  * 従業員情報更新時に使用するフォーム.
+ * 
  * @author suzukikunpei
  *
  */
@@ -10,7 +11,7 @@ public class UpdateEmployeeForm {
 
 	/** 従業員ID */
 	private String id;
-	/** 扶養人数*/
+	/** 扶養人数 */
 	private String dependentsCount;
 
 	@Override
