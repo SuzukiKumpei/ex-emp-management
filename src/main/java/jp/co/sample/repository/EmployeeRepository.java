@@ -33,14 +33,14 @@ public class EmployeeRepository {
 		employee.setName(rs.getString("name"));
 		employee.setImage(rs.getString("image"));
 		employee.setGender(rs.getString("gender"));
-		employee.setHireDate(rs.getDate("hireDate"));
-		employee.setMailAddress(rs.getString("mailAddress"));
-		employee.setZipCode(rs.getString("zipCode"));
+		employee.setHireDate(rs.getDate("hire_date"));
+		employee.setMailAddress(rs.getString("mail_address"));
+		employee.setZipCode(rs.getString("zip_code"));
 		employee.setAddress(rs.getString("address"));
 		employee.setTelephone(rs.getString("telephone"));
-		employee.setSalary(rs.getInt("employee"));
+		employee.setSalary(rs.getInt("salary"));
 		employee.setCharacteristics(rs.getString("characteristics"));
-		employee.setDependentsCount(rs.getInt("dependentsCount"));
+		employee.setDependentsCount(rs.getInt("dependents_count"));
 
 		return employee;
 	};
@@ -50,8 +50,8 @@ public class EmployeeRepository {
 	 * @return 従業員リスト
 	 */
 	public List<Employee> findAll() {
-		String sql = "SELECT id,name,image,gender,hireDate,mailAddress,zipCode"
-				+ ",address,telephone,employee,characteristics,dependentsCount" + " FROM employees ORDER BY hireDate";
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code"
+				+ ",address,telephone,salary,characteristics,dependents_count" + " FROM employees ORDER BY hire_date";
 
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 		return employeeList;
@@ -64,8 +64,8 @@ public class EmployeeRepository {
 	 * @return　従業員リスト
 	 */
 	public Employee load(Integer id) {
-		String sql = "SELECT id,name,image,gender,hireDate,mailAddress,zipCode"
-				+ ",address,telephone,employee,characteristics,dependentsCount" + " FROM employees WHERE id=:id";
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code"
+				+ ",address,telephone,salary,characteristics,dependents_count" + " FROM employees WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
 		Employee employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
@@ -80,7 +80,7 @@ public class EmployeeRepository {
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 
-		String sql = "UPDATE employees SET dependentsCount = :dependentsCount WHERE id = ;id";
+		String sql = "UPDATE employees SET dependents_count = :dependentsCount WHERE id = ;id";
 		template.update(sql, param);
 	}
 
